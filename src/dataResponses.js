@@ -71,16 +71,19 @@ const respond = (request, response, location, params) => {
   if (acceptedTypes[0] === 'text/xml') {
 	// create a valid XML string with name and age tags.
     let responseXML = '<response>';
-    responseXML = `${responseXML} <message>This is a successful response</message>`;
+    responseXML = `${responseXML} <message>${message}</message>`;
+    responseXML = `${responseXML} <id>${id}</id>`;
     responseXML = `${responseXML} </response>`;
 
 	// return response passing out string and content type
     return respondXML(request, response, responseXML, 'text/xml');
+  } else{
+    const respondJson = {};
+    respondJson.message = message;
+    respondJson.id = id;
+    return respondJSON(request, response, code, respondJson);
   }
-  const respondJson = {};
-  respondJson.message = message;
-  respondJson.id = id;
-  return respondJSON(request, response, code, respondJson);
+  
 };
 
 // public exports
