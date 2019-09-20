@@ -77,13 +77,11 @@ const respond = (request, response, location, params) => {
 
 	// return response passing out string and content type
     return respondXML(request, response, responseXML, 'text/xml');
-  } else{
+  }
     const respondJson = {};
     respondJson.message = message;
     respondJson.id = id;
     return respondJSON(request, response, code, respondJson);
-  }
-  
 };
 
 // public exports
