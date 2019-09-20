@@ -1,29 +1,5 @@
-version: 2
-jobs:
-  build:
-    docker:
-      #specify the version you desire here
-      machine:
-        node:
-          version: 10.16.3
-      - image: circleci/node: 1.0.0
-
-      working_directory: ~/repo
-
-      steps:
-        - checkout
-
-        -restore_cache:
-          keys:
-            - v1-dependencies-{{ checksum "package.json" }}
-            - v1-dependencies-
-          
-        - run: yarn install
-
-        - save_cache:
-          paths:
-            - node_modules
-            key: v1-dependencies-{{ checksum "package.json" }}
-        
-        -run: yarn test
-
+machine:
+  node:
+    version: 10.16.3
+  npm:
+    version: 6.9.0
