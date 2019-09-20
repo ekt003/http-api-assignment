@@ -7,7 +7,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.34/browser.min.js"></script>
   <script type="text/babel">
 
-    //parses the JSON/XML to update the paragraph text and return the data
+    //function to parse the response
     const parseResponse = (xhr, content) => {
       const type = xhr.getResponseHeader('content-type');
       if(type === 'application/json' && xhr.response) {
@@ -21,11 +21,11 @@
         if(message) content.innerHTML += `<p>${message}</p>`;
       }
     };
-    //Sets the header text based on the status code
+    //Function to handle our response
     const handleResponse = (xhr) => {
       const content = document.querySelector('#content');
       
-      //check the status code
+      //check the status
       switch(xhr.status) {
         case 200: //success
           content.innerHTML = `<b>Success</b>`;
@@ -55,7 +55,7 @@
     };
 
 
-    //sends the post request
+    //sends the request
     const sendPost = (e, page, type) => {
       const nameAction = "/respond";
       const nameMethod = "post";
