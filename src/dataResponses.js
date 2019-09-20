@@ -42,7 +42,7 @@ const respond = (request, response, location, params) => {
       } else {
         code = 401;
         message = 'Missing login parameter';
-        id='Missing params'
+        id = 'Missing params';
       }
       break;
     case '/forbidden':
@@ -71,11 +71,12 @@ const respond = (request, response, location, params) => {
   if (acceptedTypes[0] === 'text/xml') {
 	// create a valid XML string with name and age tags.
     let responseXML = '<response>';
-    responseXML = `${responseXML} <message>This is a successful response</message>`;
+    responseXML = `${responseXML} <message>${message}</message>`;
+    responseXML = `${responseXML} <id>${id}</id>`;
     responseXML = `${responseXML} </response>`;
 
 	// return response passing out string and content type
-    return respondXML(request, response, responseXML, 'text/xml');
+    return respondXML(request, response, code, responseXML);
   }
   const respondJson = {};
   respondJson.message = message;
